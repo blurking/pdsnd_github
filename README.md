@@ -1,15 +1,17 @@
 ### Date created
-Include the date you created this project and README file.
+created 20181020
 
 ### Project Title
-Replace the Project Title
+Bikeshare
 
 ### Description
-Describe what your project is about and what it does
+Read in raw data file containing bike share data from different cities and output a summary of the salient statistics.
 
 ### Files used
-Include the files used
+chicago.csv
+new_york_city.csv
+washington.csv
+bikeshareHWM2.py
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Thanks to the systematic guide by udacity that allow key concepts to be easily understood.
