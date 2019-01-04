@@ -65,6 +65,19 @@ def load_data(city, month='all', day='all'):
   
 # function to filter and print out data
 def analyseData():
+    """
+    filter data, perform simple analysis and print out data
+    INPUT: none
+    OUTPUT: print out the basic statistics including:
+        1. most popular travelling time
+        2. most popular travelling start and end station
+        3. most popular combination of stations
+        4. average travelling time
+        5. number of each subscriber types
+        6. number of each gender type
+        7. Oldest, Youngest and average age of subscribers
+    """
+    
     run_analysis=True
     continue_query=True
     city='Null'
