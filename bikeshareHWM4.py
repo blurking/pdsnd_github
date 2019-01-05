@@ -141,7 +141,7 @@ def analyseData():
                 if temp=='q':
                     continue_query=False
                 
-        # user has chosen to filter by months or days of week        
+        # inform user of the chosen months or days of week        
             if len(filterByDays)>0 and len(filterByMonths)>0:  
                 print('You have chosen to filter by ',filterByDays)
                 print('You have chosen to filter by ',filterByMonths)
@@ -205,14 +205,15 @@ def analyseData():
     
             for i in range(len(range_values)-1):
                 if i==0:
-            # temp contain the index for the category of range_cat. i.e. if temp[1] =1 => the age range is range_cat[temp[1]] or '> 0 and <=20' etc
+            # temp contains the index for the category of range_cat. i.e. if temp[1] =1 => the age range is range_cat[temp[1]] or '> 0 and <=10' etc
             # the 2018-birth year is compared with the range, if true , then multiply with the respective index of range_cat
+            # this will result in temp becoming an array that looks like [1,0,1,2,3 ...] where each of the entry represents the age category that particular row of data corresponds to
                     temp=(i+1)*np.array([((2018-df['Birth Year'])>=range_values[i]) & ((2018-df['Birth Year'])<range_values[i+1])])
                 else:
             # we need to convert to np.array so that we can do temp +=..., otherwise, we cannot simply add the values in 2 lists 
                     temp+=(i+1)*np.array([((2018-df['Birth Year'])>=range_values[i]) & ((2018-df['Birth Year'])<range_values[i+1])])
     
-    # convert temp to Series so that we can filter out the NAs or index 0
+    # convert temp to Series so that we can easily filter out the NAs or index 0
             temp=pd.Series(temp[0])
             temp=temp[temp>0]
     # get the mode
