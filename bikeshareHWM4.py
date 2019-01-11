@@ -14,7 +14,16 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 
 # function to filter data
 def filterby(list_of_filter,filter_type, df):
-    
+    """
+    FIlter data for the specified city by month and day if applicable.
+
+    Args:
+        (List) list_of_filter - list containing the specific months or days of week to filters
+        (str) filter_type - either month or day of week
+        (DataFrame) df - The dataframe to filter
+    Returns:
+        df - pandas DataFrame containing city data filtered by month and day
+    """
     if filter_type=='month':
         # create dictionary to get the corresponding int
         month_dict = {'january':1, 'february':2, 'march':3, 'april':4, 'may':5, 'june':6}
