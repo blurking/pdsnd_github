@@ -123,7 +123,9 @@ def analyseData():
                     filterByMonths.add(temp)
                     temp=input('Continue adding new "the day of week" or "month" as filter or Type Q to exit filtering: ').lower()
                 else:
-                        temp=input('Invalid entry, press Q to exit filter or retype to continue: ').lower()
+                    print('You have entered an invalid entry, valid entry include')
+                    print('{} or {}'.format(valid_days,valid_months))
+                    temp=input('Invalid entry, press Q to exit filter or retype to continue: ').lower()
             
                 if temp=='q':
                     continue_query=False
