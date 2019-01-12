@@ -185,8 +185,9 @@ def analyseData():
             print()
     # Print age
         if 'Birth Year' in df:
-            print('The oldest user is: ',2018-df.fillna(9999)['Birth Year'].min())
-            print('The youngest user is: ',2018-df.fillna(0)['Birth Year'].max())
+            currentyear=int(input('Enter Current Year: '))
+            print('The oldest user is: ',currentyear-df.fillna(9999)['Birth Year'].min())
+            print('The youngest user is: ',currentyear-df.fillna(0)['Birth Year'].max())
     
         # range_values is a tuple with the various boundary values of the age range: between 0 to 20 (cat 1), 20 to 40 (cat 2) etc
             range_values=(0,10,20,30,40,50, 60, 70, 80, 90, 100, 999)
@@ -195,11 +196,11 @@ def analyseData():
             for i in range(len(range_values)-1):
                 if i==0:
             # temp contain the index for the category of range_cat. i.e. if temp[1] =1 => the age range is range_cat[temp[1]] or '> 0 and <=20' etc
-            # the 2018-birth year is compared with the range, if true , then multiply with the respective index of range_cat
-                    temp=(i+1)*np.array([((2018-df['Birth Year'])>=range_values[i]) & ((2018-df['Birth Year'])<range_values[i+1])])
+            # the currentyear-birth year is compared with the range, if true , then multiply with the respective index of range_cat
+                    temp=(i+1)*np.array([((currentyear-df['Birth Year'])>=range_values[i]) & ((currentyear-df['Birth Year'])<range_values[i+1])])
                 else:
             # we need to convert to np.array so that we can do temp +=..., otherwise, we cannot simply add the values in 2 lists 
-                    temp+=(i+1)*np.array([((2018-df['Birth Year'])>=range_values[i]) & ((2018-df['Birth Year'])<range_values[i+1])])
+                    temp+=(i+1)*np.array([((currentyear-df['Birth Year'])>=range_values[i]) & ((currentyear-df['Birth Year'])<range_values[i+1])])
     
     # convert temp to Series so that we can filter out the NAs or index 0
             temp=pd.Series(temp[0])
