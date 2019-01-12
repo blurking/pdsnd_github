@@ -145,7 +145,9 @@ def analyseData():
                     filterByMonths.add(temp)
                     temp=input('Continue adding new "the day of week" or "month" as filter or Type Q to exit filtering: ').lower()
                 else:
-                        temp=input('Invalid entry, press Q to exit filter or retype to continue: ').lower()
+                    print('You have entered an invalid entry, valid entry include')
+                    print('{} or {}'.format(valid_days,valid_months))
+                    temp=input('Invalid entry, press Q to exit filter or retype to continue: ').lower()
             
                 if temp=='q':
                     continue_query=False
@@ -205,8 +207,9 @@ def analyseData():
             print()
     # Print age
         if 'Birth Year' in df:
-            print('The oldest user is: ',2018-df.fillna(9999)['Birth Year'].min())
-            print('The youngest user is: ',2018-df.fillna(0)['Birth Year'].max())
+            currentyear=int(input('Enter Current Year: '))
+            print('The oldest user is: ',currentyear-df.fillna(9999)['Birth Year'].min())
+            print('The youngest user is: ',currentyear-df.fillna(0)['Birth Year'].max())
     
         # range_values is a tuple with the various boundary values of the age range: between 0 to 20 (cat 1), 20 to 40 (cat 2) etc
             range_values=(0,10,20,30,40,50, 60, 70, 80, 90, 100, 999)
@@ -217,10 +220,10 @@ def analyseData():
             # temp contains the index for the category of range_cat. i.e. if temp[1] =1 => the age range is range_cat[temp[1]] or '> 0 and <=10' etc
             # the 2018-birth year is compared with the range, if true , then multiply with the respective index of range_cat
             # this will result in temp becoming an array that looks like [1,0,1,2,3 ...] where each of the entry represents the age category that particular row of data corresponds to
-                    temp=(i+1)*np.array([((2018-df['Birth Year'])>=range_values[i]) & ((2018-df['Birth Year'])<range_values[i+1])])
+                    temp=(i+1)*np.array([((currentyear-df['Birth Year'])>=range_values[i]) & ((currentyear-df['Birth Year'])<range_values[i+1])])
                 else:
             # we need to convert to np.array so that we can do temp +=..., otherwise, we cannot simply add the values in 2 lists 
-                    temp+=(i+1)*np.array([((2018-df['Birth Year'])>=range_values[i]) & ((2018-df['Birth Year'])<range_values[i+1])])
+                    temp+=(i+1)*np.array([((currentyear-df['Birth Year'])>=range_values[i]) & ((currentyear-df['Birth Year'])<range_values[i+1])])
     
     # convert temp to Series so that we can easily filter out the NAs or index 0
             temp=pd.Series(temp[0])
